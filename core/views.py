@@ -3,6 +3,8 @@
 from django.shortcuts import render
 from .models import Customer, Product, Order
 
+# github key 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
+
 def dashboard(request):
     """
     Renders the main dashboard page with key metrics.
