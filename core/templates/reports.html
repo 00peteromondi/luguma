@@ -1,0 +1,38 @@
+<!-- core/templates/reports.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<section id="reports-section" class="content-section">
+    <header class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Reports</h1>
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-colors duration-200">
+            Generate Report
+        </button>
+    </header>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Report Card 1 -->
+        <div class="card p-6 rounded-2xl bg-white flex items-center space-x-4">
+            <div class="bg-gray-100 text-gray-600 rounded-full p-3">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Monthly Sales</p>
+                <p class="text-xl font-bold mt-1 text-gray-900">August 2023</p>
+            </div>
+        </div>
+        <!-- Report Card 2 -->
+        <div class="card p-6 rounded-2xl bg-white flex items-center space-x-4">
+            <div class="bg-gray-100 text-gray-600 rounded-full p-3">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Inventory Turnover</p>
+                <p class="text-xl font-bold mt-1 text-gray-900">Q2 2023</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

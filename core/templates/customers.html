@@ -1,0 +1,44 @@
+<!-- core/templates/customers.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+<section id="customers-section" class="content-section">
+    <header class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Customers</h1>
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-colors duration-200">
+            Add New Customer
+        </button>
+    </header>
+    <div class="card p-6 rounded-2xl bg-white">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Orders</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Order</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for customer in all_customers %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ customer.name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ customer.email }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ customer.total_orders }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ customer.last_order_date|default:"N/A" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">No customers found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

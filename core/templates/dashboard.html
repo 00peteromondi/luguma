@@ -1,0 +1,126 @@
+<!-- core/templates/dashboard.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section id="dashboard-section" class="content-section">
+    <header class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
+        <div class="flex items-center space-x-4">
+            <a href="{% url 'products' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-colors duration-200">
+                Add New Product
+            </a>
+        </div>
+    </header>
+
+    <div class="space-y-8">
+        <!-- Quick Stats Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Stat Card: Total Sales -->
+            <div class="card p-6 rounded-2xl bg-white flex items-center space-x-4">
+                <div class="bg-blue-100 text-blue-600 rounded-full p-3">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 6v-2m0 6v-2m0 0h2.599M12 12H9.401m6.599 4h-4m2 0a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">Total Sales</p>
+                    <p class="text-2xl font-bold mt-1 text-gray-900">KES {{ total_sales|default:"0.00" }}</p>
+                </div>
+            </div>
+            <!-- Stat Card: New Orders -->
+            <div class="card p-6 rounded-2xl bg-white flex items-center space-x-4">
+                <div class="bg-green-100 text-green-600 rounded-full p-3">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">New Orders</p>
+                    <p class="text-2xl font-bold mt-1 text-gray-900">{{ new_orders_count }}</p>
+                </div>
+            </div>
+            <!-- Stat Card: Low Stock Items -->
+            <div class="card p-6 rounded-2xl bg-white flex items-center space-x-4">
+                <div class="bg-red-100 text-red-600 rounded-full p-3">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">Low Stock Items</p>
+                    <p class="text-2xl font-bold mt-1 text-gray-900">{{ low_stock_items }}</p>
+                </div>
+            </div>
+            <!-- Stat Card: Active Customers -->
+            <div class="card p-6 rounded-2xl bg-white flex items-center space-x-4">
+                <div class="bg-purple-100 text-purple-600 rounded-full p-3">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-8m8 0a2 2 0 00-2-2H9a2 2 0 00-2 2m8 0v-2.18m-8 2.18V17.9a2 2 0 012-2.17h2.246a2 2 0 011.758 1.05l.39.73c.27.5.83 1.05 1.58 1.05h1.75c.75 0 1.31-.55 1.58-1.05l.39-.73a2 2 0 011.758-1.05H17a2 2 0 012 2.17v2.18m-8-12a4 4 0 100 8m0-8a4 4 0 010 8m-4-2h8a2 2 0 012 2v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2a2 2 0 012-2z"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">Active Customers</p>
+                    <p class="text-2xl font-bold mt-1 text-gray-900">{{ active_customers_count }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity and Sales Chart Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Sales Chart -->
+            <div class="card lg:col-span-2 p-6 rounded-2xl bg-white">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Sales Overview (Last 30 Days)</h3>
+                    <a href="{% url 'reports' %}" class="text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200">View All Reports &rarr;</a>
+                </div>
+                <!-- Placeholder for a chart library like Chart.js or D3 -->
+                <div class="h-64 bg-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-mono">
+                    Interactive Sales Chart Placeholder
+                </div>
+            </div>
+            <!-- Recent Activity Feed -->
+            <div class="card p-6 rounded-2xl bg-white">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Recent Activity</h3>
+                <ul class="space-y-4">
+                    {% for order in recent_orders %}
+                    <li class="flex items-start space-x-3">
+                        <div class="p-2 {% if order.status == 'Shipped' %}bg-green-100 text-green-600{% elif order.status == 'Pending' %}bg-yellow-100 text-yellow-600{% else %}bg-blue-100 text-blue-600{% endif %} rounded-full">
+                             {% if order.status == 'Shipped' %}
+                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                             {% elif order.status == 'Pending' %}
+                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                             {% else %}
+                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                             {% endif %}
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-gray-900">New order #{{ order.order_id }} from **{{ order.customer.name }}**.</p>
+                            <p class="text-xs text-gray-500 mt-1">{{ order.order_date }}</p>
+                        </div>
+                    </li>
+                    {% empty %}
+                    <li class="text-sm text-gray-500">No recent activity.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <!-- Product Inventory Quick View -->
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-gray-900">Product Inventory Quick View</h3>
+                <a href="{% url 'products' %}" class="text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200">View All Products &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for product in products_quick_view %}
+                <div class="card p-4 rounded-2xl bg-white flex items-center space-x-4">
+                    <img src="https://placehold.co/80x80/e0e0e0/555?text={{ product.name|slice:":1" }}" alt="{{ product.name }}" class="w-20 h-20 object-cover rounded-xl">
+                    <div class="flex-grow">
+                        <h4 class="text-lg font-semibold">{{ product.name }}</h4>
+                        <p class="text-sm text-gray-500">SKU: {{ product.sku }}</p>
+                        <p class="text-sm text-gray-900 mt-1">In Stock: <span class="font-bold {% if product.stock_quantity < 10 %}text-red-600{% else %}text-green-600{% endif %}">{{ product.stock_quantity }}</span> units</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No products available.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}
